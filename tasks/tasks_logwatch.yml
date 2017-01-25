@@ -29,7 +29,7 @@
 
   - name: Logwatch | Configure logwatch's cronjob
     cron: name=logwatch job="/usr/sbin/logwatch --output mail" special_time="{{logwatch_cron_time}}"
-    when option_setup_cron
+    when: option_setup_cron
     become: yes
     tags:
       - logwatch
