@@ -5,6 +5,9 @@ Implementation of the logwatch - handy script that would mail you overview for y
 
 [![Build Status](https://travis-ci.org/softasap/sa-logwatch.svg?branch=master)](https://travis-ci.org/softasap/sa-logwatch)
 
+
+Logwatch is a log parsing program that analyzes and generates daily reports on your system’s log activity. Logwatch does not provide real time alerts, but instead will create a digest organized by systems for ease of review. More advanced users can also pair Logwatch with custom analysis scripts to fine-tune their reports
+
 Important: by default package would try to install local mail server, thus we would recommend to install & configure it on your own,
 for example, via sa-postfix role.
 
