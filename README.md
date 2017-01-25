@@ -79,6 +79,17 @@ logwatch_conf_custom_props:
 ```
 
 
+To view logwatch output use less :
+```bash
+sudo logwatch | less
+```
+
+To email a logwatch report for the past 7 days to an email address, enter the following and replace mail@domain.com with the required email:
+
+```bash
+sudo logwatch --mailto mail@domain.com --output mail --format html --range 'between -7 days and today' 
+```
+
 
 Copyright and license
 ---------------------
