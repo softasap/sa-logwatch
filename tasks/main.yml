@@ -1,0 +1,4 @@
+---
+# tasks file for sa-logwatch
+
+  - include: tasks_logwatch.yml

@@ -1,0 +1,19 @@
+---
+# defaults file for sa-logwatch
+
+option_setup_cron: false
+logwatch_cron_time: "daily"
+
+logwatch_mail_to: "root@localhost"  # Email Address which Logwatch reports to
+logwatch_detail: "low"            # The level of detail in the Logwatch report
+logwatch_range: "yesterday"       # The default time range for the Logwatch report
+logwatch_output: "stdout"         # The output method of the Logwatch report
+logwatch_format: "text"           # The format of the Logwatch report
+
+logwatch_conf_default_props:
+   - {regexp: '^[#]?Output =.*', line: 'Output = {{logwatch_output}}'}
+   - {regexp: '^[#]?Format =.*', line: 'Format = {{logwatch_format}}'}
+   - {regexp: '^[#]?Range =.*', line: 'Range = {{logwatch_range}}'}
+   - {regexp: '^[#]?Detail =.*', line: 'Detail = {{logwatch_range}}'}
+   - {regexp: '^[#]?MailTo =.*', line: 'MailTo = {{logwatch_mail_to}}'}
+
