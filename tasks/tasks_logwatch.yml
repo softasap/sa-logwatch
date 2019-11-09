@@ -1,22 +1,30 @@
 ---
   - name: LogWatch | Install base packages
-    apt: pkg="{{item}}"
+    apt:
+      pkg:
+       - logwatch
     become: yes
-    with_items:
-      - "logwatch"
     tags:
       - logwatch
 
   - name: LogWatch | Patch /usr/share/logwatch/default.conf/logwatch.conf - default properties
-    lineinfile: dest=/usr/share/logwatch/default.conf/logwatch.conf  regexp="{{item.regexp}}" line="{{item.line}}" insertafter="{{item.insertafter | default('EOF')}}"
-    with_items: "{{logwatch_conf_default_props | default([])}}"
+    lineinfile:
+      dest: /usr/share/logwatch/default.conf/logwatch.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      insertafter: "{{ item.insertafter | default('EOF') }}"
+    with_items: "{{ logwatch_conf_default_props | default([]) }}"
     become: yes
     tags:
       - logwatch
 
   - name: LogWatch | Patch /usr/share/logwatch/default.conf/logwatch.conf - custom properties
-    lineinfile: dest=/usr/share/logwatch/default.conf/logwatch.conf  regexp="{{item.regexp}}" line="{{item.line}}" insertafter="{{item.insertafter | default('EOF')}}"
-    with_items: "{{logwatch_conf_props | default([])}}"
+    lineinfile:
+      dest: /usr/share/logwatch/default.conf/logwatch.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      insertafter: "{{ item.insertafter | default('EOF') }}"
+    with_items: "{{ logwatch_conf_props | default([]) }}"
     become: yes
     tags:
       - logwatch
@@ -28,7 +36,7 @@
       - logwatch
 
   - name: Logwatch | Configure logwatch's cronjob
-    cron: name=logwatch job="/usr/sbin/logwatch --output mail" special_time="{{logwatch_cron_time | default('daily')}}"
+    cron: name=logwatch job="/usr/sbin/logwatch --output mail" special_time="{{ logwatch_cron_time | default('daily') }}"
     when: option_setup_cron
     become: yes
     tags:
